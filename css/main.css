@@ -1,0 +1,33 @@
+table{
+    width: 45%;
+    height: 45%;
+    margin: 0 auto;
+}
+tr, td {
+    border: 3px solid black;
+    border-radius: 10px;
+    border-collapse: collapse;
+    text-align: center;
+    height: 20px;
+    padding: 10%;
+    }
+
+body{
+    background-color: aqua;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "leftHalf rightHalf"
+}
+header{
+    height: 15vh;
+    padding-left: 15vw;
+}
+h1{
+    font-size: 4em;
+}
+.left-half{
+    grid-area: leftHalf;
+}
+.right-half{
+    grid-area: rightHalf;
+}

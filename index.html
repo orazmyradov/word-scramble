@@ -5,45 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main.css">
+    <script src="./js/app.js" defer></script>
     <title>Unscrambler</title>
 </head>
 <body>
-    <main>
+    
         <header>
             <h1>Unscrambler</h1>
         </header>
-        <section class="left-half">
-        <table>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td>14</td>
-                <td>15</td>
-                <td>16</td>
-            </tr>
-        </table>
-        </section>
-        <section class="right-half">
+        <main>
+            <section class="leftHalf">
+            <table>
+                <tr>
+                    <td id="t1" class="levelUpVisible">1</td>
+                    <td id="t2">2</td>
+                    <td id="t3">3</td>
+                    <td id="t4">4</td>
+                </tr>
+                <tr>
+                    <td id="t5" class="levelUpVisible">5</td>
+                    <td id="t6">6</td>
+                    <td id="t7">7</td>
+                    <td id="t8">8</td>
+                </tr>
+                <tr>
+                    <td id="t9" class="levelUpVisible">9</td>
+                    <td id="t10">10</td>
+                    <td id="t11">11</td>
+                    <td id="t12">12</td>
+                </tr>
+                <tr>
+                    <td id="t13" class="levelUpVisible">13</td>
+                    <td id="t14" class="levelUpVisible">14</td>
+                    <td id="t15" class="levelUpVisible">15</td>
+                    <td id="t16" class="levelUpVisible">16</td>
+                </tr>
+            </table>
+            </section>
+            <section class="rightHalf">
+                <h2>Level 1</h2>
+                <div class="lives">
+                    <img src="./images/egg.png" alt="egg">
+                    <img src="./images/egg.png" alt="egg">
+                    <img src="./images/egg.png" alt="egg">
+                    <img src="./images/egg.png" alt="egg">
+                    <img src="./images/egg.png" alt="egg">
+                </div>
+                <ul>
+                    <li>Words here</li>
+                    <li>Words here</li>
+                </ul>
+            </section>
+        </main>
 
-        </section>
-    </main>
-    <script src="./js/app.js"></script>
 </body>
 </html>

@@ -103,3 +103,14 @@ Game created for Unit 1 my General Assembly Web Immersive course
     2. "Game Over" is displayed across the screen 
     3. "Try again?" button below Game Over 
         1. resets game to level 1
+
+##Questions
+1. How do I get the table to add a row or column when its time change levels?
+    1. How do I change the tables items to display new words each level?
+    2. How do I get those words from the word bank to display on the tiles?
+    3. How do I check to make sure each word is spelled in the correct order?
+    4. How do I draw a line between each square
+2. How do I remove a life when a try is incorrect?
+    1. How do I signal a game over when there are no more lives?
+3. How do I display the solved letters on the right?
+4. How do I print a line for each letter or the words on the right? to show player how many letters are in each word?

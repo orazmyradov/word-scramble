@@ -1,7 +1,7 @@
 table{
-    width: 45%;
-    height: 45%;
-    margin: 0 auto;
+    width: 70%;
+    height: 70%;
+    margin: 10% auto;
 }
 tr, td {
     border: 3px solid black;
@@ -10,24 +10,67 @@ tr, td {
     text-align: center;
     height: 20px;
     padding: 10%;
+    background-color: #FFFEDF;
     }
 
 body{
-    background-color: aqua;
-    grid-template-rows: 1fr;
+    background-color: rgb(49, 88, 192);
+    display: grid;
+}
+main{
+    grid-template-rows: 1fr 50%;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "leftHalf rightHalf"
+    grid-template-areas: "leftHalf rightHalf";
+    display: grid;
+
 }
 header{
     height: 15vh;
-    padding-left: 15vw;
+    border-bottom: black 5px solid;
+    background-color: rgba(49, 88, 192, 0.3);
+}
+footer{
+    grid-area: footer;
 }
 h1{
+    text-align: center;
     font-size: 4em;
 }
-.left-half{
+.leftHalf{
     grid-area: leftHalf;
 }
-.right-half{
+.rightHalf{
     grid-area: rightHalf;
+    text-align: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% 1fr 1fr;
+    grid-template-areas: "level"
+                         "eggs"
+                         "word";
+    display: grid;
+}
+h2{
+    text-decoration: underline;
+    grid-area: level;
+    font-size: 45px;
+}
+.lives{
+    grid-area: eggs;
+
+}
+img{
+    height: 75px;
+    width: 75px;
+    margin: 0 auto;
+    padding: 3%;
+}
+ul{
+    grid-area: word;
+}
+.levelUpVisible{
+    visibility: collapse;
+}
+.levelUpInvisible{
+    visibility: collapse;
+
 }

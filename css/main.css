@@ -31,6 +31,7 @@ header{
 }
 footer{
     grid-area: footer;
+    height: 2em;
 }
 h1{
     text-align: center;
@@ -43,11 +44,13 @@ h1{
     grid-area: rightHalf;
     text-align: center;
     grid-template-columns: 1fr;
-    grid-template-rows: 20% 1fr 1fr;
+    grid-template-rows: 20% 25% 1fr 10%;
     grid-template-areas: "level"
                          "eggs"
-                         "word";
+                         "word"
+                         "buttons";
     display: grid;
+    margin: 0 10%;
 }
 h2{
     text-decoration: underline;
@@ -77,5 +80,33 @@ ul{
 li{
     border: 1px black solid;
     padding: 5px;
-    margin: 5px auto;
+    margin: 0 auto;
+}
+button{
+    padding: 0 auto;
+    margin: 0 auto;
+    font-size: 1.3em;
+    height: 50px;
+    background-color: #FFFEDF;
+}
+.buttons{
+    grid-area: buttons;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "retry quit";
+    width: 100%;
+}
+#retry{
+    grid-area: retry;
+    width: 50%;
+    border: orange 2px solid;
+}
+#quit{
+    grid-area: quit;
+    width: 50%;
+    border: orangered 2px solid;
+    background-color: rgba(196, 193, 130, 0.728);
+
 }

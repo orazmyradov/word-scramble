@@ -1,44 +1,36 @@
 /*----- cached element references -----*/
 var wordTable = document.querySelectorAll('td');
 var eggs = document.querySelectorAll('img');
-var l1 = document.getElementById('l1');
-var l2 = document.getElementById('l2');
-var l3 = document.getElementById('l3');
-var l4 = document.getElementById('l4');
-var l5 = document.getElementById('l5');
-var l6 = document.getElementById('l6');
-var l7 = document.getElementById('l7');
-var t1 = document.getElementById('t1');
-var t2 = document.getElementById('t2');
-var t3 = document.getElementById('t3');
-var t4 = document.getElementById('t4');
-var t5 = document.getElementById('t5');
-var t6 = document.getElementById('t6');
-var t7 = document.getElementById('t7');
-var t8 = document.getElementById('t8');
-var t9 = document.getElementById('t9');
-var answerList = document.querySelector('ul');
 
+var answerList = document.querySelector('ul');
+var fiveLives = document.querySelectorAll('.eggs');
+
+
+wordOne = answerList.childNodes[0];
+wordTwo = answerList.childNodes[1];
+wordThree = answerList.childNodes[2];
+wordFour = answerList.childNodes[3];
 
 /*----- event listeners -----*/
-l1.addEventListener('click',letterPush);
-l2.addEventListener('click',letterPush);
-l3.addEventListener('click',letterPush);
-l4.addEventListener('click',letterPush);
-l5.addEventListener('click',letterPush);
-l6.addEventListener('click',letterPush);
-l7.addEventListener('click',letterPush);
+var retryBtn = document.getElementById('retry').addEventListener('click', retryLevel);
 
-t1.addEventListener('click',letterPush);
-t2.addEventListener('click',letterPush);
-t3.addEventListener('click',letterPush);
-t4.addEventListener('click',letterPush);
-t5.addEventListener('click',letterPush);
-t6.addEventListener('click',letterPush);
-t7.addEventListener('click',letterPush);
-t8.addEventListener('click',letterPush);
-t9.addEventListener('click',letterPush);
+var l1 = document.getElementById('l1').addEventListener('click',letterPush);
+var l2 = document.getElementById('l2').addEventListener('click',letterPush);
+var l3 = document.getElementById('l3').addEventListener('click',letterPush);
+var l4 = document.getElementById('l4').addEventListener('click',letterPush);
+var l5 = document.getElementById('l5').addEventListener('click',letterPush);
+var l6 = document.getElementById('l6').addEventListener('click',letterPush);
+var l7 = document.getElementById('l7').addEventListener('click',letterPush);
 
+var t1 = document.getElementById('t1').addEventListener('click',letterPush);
+var t2 = document.getElementById('t2').addEventListener('click',letterPush);
+var t3 = document.getElementById('t3').addEventListener('click',letterPush);
+var t4 = document.getElementById('t4').addEventListener('click',letterPush);
+var t5 = document.getElementById('t5').addEventListener('click',letterPush);
+var t6 = document.getElementById('t6').addEventListener('click',letterPush);
+var t7 = document.getElementById('t7').addEventListener('click',letterPush);
+var t8 = document.getElementById('t8').addEventListener('click',letterPush);
+var t9 = document.getElementById('t9').addEventListener('click',letterPush);
 
 /*----- functions -----*/ 
 // When first letter is clicked it is indented
@@ -52,12 +44,15 @@ function answerDisplay(){
         newLi.textContent = space.repeat(wordArray);
         answerList.appendChild(newLi);
     }
+    
 }
-answerDisplay()
+answerDisplay();
+
+//click function
 
 function letterPush(){
     lettersPlayed.push(this.textContent);
-    this.style.borderColor = "red";
+    this.style.borderColor = "orangeRed";
     this.removeEventListener('click', letterPush)
     checkForWin();
 }

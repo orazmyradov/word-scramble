@@ -1,16 +1,16 @@
 table{
-    width: 70%;
-    height: 70%;
-    margin: 10% auto;
+    width: 78%;
+    height: 75%;
+    margin: 5% auto;
 }
 tr, td {
     border: 3px solid black;
     border-radius: 10px;
-    border-collapse: collapse;
     text-align: center;
     height: 20px;
     padding: 10%;
     background-color: #FFFEDF;
+    font-size: 1.5em;
     }
 
 body{
@@ -66,11 +66,16 @@ img{
 }
 ul{
     grid-area: word;
+    list-style: none;
+    font-size: 40px;
+    letter-spacing: .25em;
+    font-weight: 600;
 }
 .levelUpVisible{
-    visibility: collapse;
+    visibility: hidden;
 }
-.levelUpInvisible{
-    visibility: collapse;
-
+li{
+    border: 1px black solid;
+    padding: 5px;
+    margin: 5px auto;
 }

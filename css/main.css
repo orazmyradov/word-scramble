@@ -93,19 +93,21 @@ button{
     grid-area: buttons;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "retry quit";
+    grid-template-areas: "retry hint quit";
     width: 100%;
 }
 #retry{
     grid-area: retry;
-    width: 50%;
     border: orange 2px solid;
+}
+#hint{
+    grid-area: hint;
+    border: darkgrey 2px solid;
 }
 #quit{
     grid-area: quit;
-    width: 50%;
     border: orangered 2px solid;
     background-color: rgba(196, 193, 130, 0.728);
 

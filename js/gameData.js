@@ -20,13 +20,18 @@ var wordBank = [
 /*----- app's state (variables) -----*/
 var gameWon = false;
 var gameOver = false;
-var level = 0;
+var level = 2;
 
 var lifeLoss = false;
 var lives = 5;
 
 var lettersPlayed = [];
-var joinedWordSeperate = [];
+var joinedWordsSeperate = [];
+
+var wordOne;
+var wordTwo;
+var wordThree;
+var wordFour;
 
 /*----- Levels -----*/
 var levelsArray = [
@@ -43,73 +48,79 @@ var levelsArray = [
         ],
          hint: "breakfast",
          levelAnswers: ["EGG", "CHEESE"]
-        }//,
-        // // {board: [
-        // //     [t1.textContent = "F"],
-        // //     [t2.textContent = "O"],
-        // //     [t3.textContent = "S"],
-        // //     [t4.textContent = "N"],
-        // //     [t5.textContent = "P"],
-        // //     [t6.textContent = "R"],
-        // //     [t7.textContent = "O"],
-        // //     [t8.textContent = "O"],
-        // //     [t9.textContent = "K"]
-        // // ],
-        // // hint: "utensils",
-        // // levelAnswers: ["SPOON","FORK"]
-        // // },
-        // // {board: [
-        // //     [t1.textContent = "A"],
-        // //     [t2.textContent = "P"],
-        // //     [t3.textContent = "P"],
-        // //     [t4.textContent = "L"],
-        // //     [t5.textContent = "E"],
-        // //     [t6.textContent = "P"],
-        // //     [t7.textContent = "E"],
-        // //     [t8.textContent = "A"],
-        // //     [t9.textContent = "R"]
-        // // ],
-        // //  hint: "fruits",
-        // //  levelAnswers: ["APPLE", "PEAR"]
-        // //     }
+        }
+        ,
+        {board: [
+            [t1.textContent = "F"],
+            [t2.textContent = "O"],
+            [t3.textContent = "S"],
+            [t4.textContent = "N"],
+            [t5.textContent = "P"],
+            [t6.textContent = "R"],
+            [t7.textContent = "O"],
+            [t8.textContent = "O"],
+            [t9.textContent = "K"]
+        ],
+        hint: "utensils",
+        levelAnswers: ["SPOON","FORK"]
+        } ,
+        {board: [
+            [t1.textContent = "E"],
+            [t2.textContent = "R"],
+            [t3.textContent = "P"],
+            [t4.textContent = "L"],
+            [t5.textContent = "E"],
+            [t6.textContent = "P"],
+            [t7.textContent = "A"],
+            [t8.textContent = "A"],
+            [t9.textContent = "P"]
+        ],
+         hint: "fruits",
+         levelAnswers: ["APPLE", "PEAR"]
+            }
 ]
 
 /*----- functions -----*/
 
+// checks for win
 
 
 function checkForWin(){    
-    for(let i = 0; i < levelsArray[level].levelAnswers; i++){
-        
-        for(let p = 0; p < lettersPlayed.length; p++){
-        
-            if(lettersPlayed.length === 9 && joinedWordSeperate.length !== levelsArray[level].levelAnswers.length){
-                lifeLoss = true;
+    if(lettersPlayed.length === 9 && joinedWordsSeperate.length !== levelsArray[level].levelAnswers.length){
+        lifeLoss = true;
+        console.log("Life lost. Lives left: " + (lives-=1));
 
-            }else if(lettersPlayed.join('') === levelsArray[level].levelAnswers[p]){
-                joinedWordSeperate.push(lettersPlayed.join(''));
-                answerList.childNodes[i].textContent = joinedWordSeperate[i];
+    }else{
+        for(let i = 0; i < lettersPlayed.length; i++){
+    
+            if(levelsArray[level].levelAnswers.includes(lettersPlayed.join(''))){  
+                joinedWordsSeperate.push(this.lettersPlayed.join(''));
                 lettersPlayed = [];
-                console.log("word correct");       
-                if(joinedWordSeperate.length === levelsArray[level].levelAnswers.length){
-                    nextLevel();
-                }
-            }else{
-                console.log("no");
             }
-        }                
-    }lifeCount();
+        }
+        console.log(joinedWordsSeperate);
+
+        if(joinedWordsSeperate.length === levelsArray[level].levelAnswers.length){
+        console.log("Level Complete!")
+        }
+    }
 }
 
 
+
+
+
+
+
+// initiates next level, changes board to next level
 
 function nextLevel(){
     retryLevel();
     lives = 5;
     level = level++;
-    levelDisplay.textContent = "Level: " + level++;
 }
 
+//adjusts lives displayed on screen ** needs to remove image
 
 function lifeCount(){
     if(lifeLoss === true){
@@ -118,9 +129,11 @@ function lifeCount(){
     }
 }
 
+// readjusts the board after retry level is clicked
+
 function retryLevel(){
     lettersPlayed = [];
-    joinedWordSeperate = [];
+    joinedWordsSeperate = [];
     for(let cube of wordTable){
         cube.addEventListener('click',letterPush);
         cube.style.borderColor = "black";
@@ -129,8 +142,10 @@ function retryLevel(){
     answerDisplay();
 }
 
+//after all lives are lost, initiate this function
+
 function gameOverScreen(){
-    if(lives === 0);
+    if(lives === 0){
         alert('gameOver');
-        
+    };
 }

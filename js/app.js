@@ -6,7 +6,7 @@ var answerList = document.querySelector('ul');
 var fiveLives = document.querySelectorAll('.eggs');
 
 var hintBtn = document.getElementById('hint');
-var levelDisplay = document.getElementById('levelDisplay');
+var levelDisplay = document.getElementById('levelDisplay').textContent = "Level: " + (level + 1);
 
 /*----- event listeners -----*/
 var retryBtn = document.getElementById('retry').addEventListener('click', retryLevel);
@@ -35,10 +35,7 @@ hintBtn.addEventListener("click", hint);
 function initGame(){
 
 }
-// When first letter is clicked it is indented
-//     1. After second letter is clicked correctly
-//          Create array of correct words
-
+// displays answers as spaces
 function answerDisplay(){
     for(let word of levelsArray[level].levelAnswers){
         let wordArray = word.length;
@@ -51,60 +48,28 @@ function answerDisplay(){
 }
 answerDisplay();
 
-//click function
-
+//changes squares as they are clicked
 function letterPush(){
     lettersPlayed.push(this.textContent);
     this.style.borderColor = "orangeRed";
-    this.removeEventListener('click', letterPush)
+    this.removeEventListener('click', letterPush);
     checkForWin();
 }
-/*----- Pseudocode -----*/
-// 3. When first letter is clicked it is indented
-//     1. After second letter is clicked correctly
-//         1. second letter is indented
-//         2. line is drawn to connect them
-//     2. When incorrect letter is clicked
-//         1. image (life) fades from the right 
-//         2. the lines are erased from the board
-//         3. board shakes (or signifies a change)
-//         4. letters are back to surface (Not indented)
-//     3. Line continues to next correct letter clicked
-//     4. Once all letters have been clicked correctly
-//         1. display a change
-//             1. Sparkles
-//             2. sound
-//         2. Replace lives
-//         3. line changes color
-//         4. word is displayed
-// 4. Board resets
-//     1. New word is displayed in a new board
-//         1. board size changes depending on word
-//     2. Level number on right side has changed to the current level
-//     3. Lives are full (3 images)
-// 5. Higher difficulty
-//     1. words increase in difficulty 
-//     2. words increase in size
-//     3. board increases in size
-function levelUp(){
-    l1.style.visibility = "visible";
-    l2.style.visibility = "visible";
-    l3.style.visibility = "visible";
-    l4.style.visibility = "visible";
-    l5.style.visibility = "visible";
-    l6.style.visibility = "visible";
-    l7.style.visibility = "visible";
-}
-//     4. line path increases maneuver difficulty
-//     5. Eventually multiple words can be on same board. (same theme)
 
-//hint button
+//increases board size
+function levelUp(){
+    // l1.style.visibility = "visible";
+    // l2.style.visibility = "visible";
+    // l3.style.visibility = "visible";
+    // l4.style.visibility = "visible";
+    // l5.style.visibility = "visible";
+    // l6.style.visibility = "visible";
+    // l7.style.visibility = "visible";
+    wordTable.style.visibility = "visible";
+}
+
+//function for hint button
 function hint(){
     lives -= 1;
     alert(levelsArray[level].hint);
 }
-// 6. If all lives are lost
-//     1. All of screen is erased (Except header and footer)
-//     2. "Game Over" is displayed across the screen 
-//     3. "Try again?" button below Game Over 
-//         1. resets game to level 1

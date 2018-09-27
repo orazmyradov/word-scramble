@@ -5,14 +5,16 @@ var livesImages = document.getElementById('lives');
 
 var titleDisplay = document.getElementById('title-display');
 
-var blankSpaces = document.querySelector('ul');
+var blankSpaces = document.getElementById('blank-spaces');
 var answerList = document.querySelectorAll('li');
-var fiveLives = document.querySelectorAll('.eggs');
 var levelDisplay = document.getElementById('level-display');
 
+var biggerBoard = document.getElementsByClassName('level-up-visible');
+
 var hintBtn = document.getElementById('hint');  
-var retryBtn = document.getElementById('retry');
 hintBtn.addEventListener("click", hint);
+
+var retryBtn = document.getElementById('retry');
 retryBtn.addEventListener("click", retryLevel);
 
 var t1 = document.getElementById('t1');
@@ -102,13 +104,15 @@ var wordBank = [
 ]
 
 /*----- functions -----*/
-
+//function for hint button
+function hint(){
+    alert(levelsArray[level].hint);
+}
 
 //increases board size
 function levelUp(){
-    var extraTableElements = [l1,l2,l3,l4,l5,l6,l7];
-    extraTableElements.forEach(function(){
-        this.style.visibility = "visible";
+    biggerBoard.forEach(function(element){
+        element.style.visibility = "visible";
     })
 }
 
@@ -116,39 +120,18 @@ function levelUp(){
 // readjusts the board after retry level is clicked
 
 function retryLevel(){
-     if(joinedWordsSeperate.length !== levelsArray[level].levelAnswers.length){
-        joinedWordsSeperate.length = 0;
-        lettersPlayed.length = 0;
-        gameWon = false;
-        gameOver = false;
-        levelDisplay.textContent = "Level: " + (level + 1);
-        for(let cube of wordTable){
-            cube.style.borderColor = "black";
-        }
-        blankSpaces.textContent = "";
-        addClickListener()
-        answerDisplay();
-        
-        t1.textContent = levelsArray[level].board[0];
-        t2.textContent = levelsArray[level].board[1];
-        t3.textContent = levelsArray[level].board[2];
-        t4.textContent = levelsArray[level].board[3];
-        t5.textContent = levelsArray[level].board[4];
-        t6.textContent = levelsArray[level].board[5];
-        t7.textContent = levelsArray[level].board[6];
-        t8.textContent = levelsArray[level].board[7];
-        t9.textContent = levelsArray[level].board[8];
-    
-        l1.textContent = levelsArray[level].board[9];
-        l2.textContent = levelsArray[level].board[10];
-        l3.textContent = levelsArray[level].board[11];
-        l4.textContent = levelsArray[level].board[12];
-        l5.textContent = levelsArray[level].board[13];
-        l6.textContent = levelsArray[level].board[14];
-        l7.textContent = levelsArray[level].board[15];
-    
-    
+    joinedWordsSeperate.length = 0;
+    lettersPlayed.length = 0;
+    gameWon = false;
+    gameOver = false;
+    levelDisplay.textContent = "Level: " + (level + 1);
+    for(let cube of wordTable){
+        cube.style.borderColor = "black";
+    }
+    addClickListener()
+    answerDisplay();
+    boardLetterAssigner();
 }
-}
+
 
 

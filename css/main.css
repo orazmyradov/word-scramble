@@ -1,3 +1,14 @@
+body{
+    background-color: rgb(49, 88, 192);
+    display: grid;
+}
+main{
+    grid-template-rows: 1fr 50%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "leftHalf rightHalf";
+    display: grid;
+
+}
 table{
     width: 78%;
     height: 75%;
@@ -11,18 +22,6 @@ tr, td {
     padding: 10%;
     background-color: #FFFEDF;
     font-size: 1.5em;
-    }
-
-body{
-    background-color: rgb(49, 88, 192);
-    display: grid;
-}
-main{
-    grid-template-rows: 1fr 50%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "leftHalf rightHalf";
-    display: grid;
-
 }
 header{
     height: 15vh;
@@ -37,29 +36,17 @@ h1{
     text-align: center;
     font-size: 4em;
 }
-.leftHalf{
-    grid-area: leftHalf;
+li{
+    border: 1px black solid;
+    padding: 5px;
+    margin: 0 auto;
 }
-.rightHalf{
-    grid-area: rightHalf;
-    text-align: center;
-    grid-template-columns: 1fr;
-    grid-template-rows: 20% 25% 1fr 10%;
-    grid-template-areas: "level"
-                         "eggs"
-                         "word"
-                         "buttons";
-    display: grid;
-    margin: 0 10%;
-}
-h2{
-    text-decoration: underline;
-    grid-area: level;
-    font-size: 45px;
-}
-.lives{
-    grid-area: eggs;
-
+button{
+    padding: 0 auto;
+    margin: 0 auto;
+    font-size: 1.3em;
+    height: 50px;
+    background-color: #FFFEDF;
 }
 img{
     height: 75px;
@@ -74,20 +61,32 @@ ul{
     letter-spacing: .25em;
     font-weight: 600;
 }
-.levelUpVisible{
+h2{
+    text-decoration: underline;
+    grid-area: level;
+    font-size: 45px;
+}
+.left-half{
+    grid-area: leftHalf;
+}
+.right-half{
+    grid-area: rightHalf;
+    text-align: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% 25% 1fr 10%;
+    grid-template-areas: "level"
+                         "eggs"
+                         "word"
+                         "buttons";
+    display: grid;
+    margin: 0 10%;
+}
+.lives{
+    grid-area: eggs;
+
+}
+.level-up-visible{
     visibility: hidden;
-}
-li{
-    border: 1px black solid;
-    padding: 5px;
-    margin: 0 auto;
-}
-button{
-    padding: 0 auto;
-    margin: 0 auto;
-    font-size: 1.3em;
-    height: 50px;
-    background-color: #FFFEDF;
 }
 .buttons{
     grid-area: buttons;

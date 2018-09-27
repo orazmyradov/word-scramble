@@ -21,7 +21,7 @@ var wordBank = [
 
 var gameWon;
 var gameOver;
-var level;
+var level = 0;
 
 var lifeLoss;
 var lives;

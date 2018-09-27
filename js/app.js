@@ -5,31 +5,32 @@ var eggs = document.querySelectorAll('img');
 var blankSpaces = document.querySelector('ul');
 var answerList = document.querySelectorAll('li');
 var fiveLives = document.querySelectorAll('.eggs');
-var hintBtn = document.getElementById('hint').addEventListener("click", hint);
 var levelDisplay = document.getElementById('levelDisplay');
-    
-var retryBtn = document.getElementById('retry').addEventListener('click', retryLevel);
 
-var t1 = document.getElementById('t1')
-var t2 = document.getElementById('t2')
-var t3 = document.getElementById('t3')
-var t4 = document.getElementById('t4')
-var t5 = document.getElementById('t5')
-var t6 = document.getElementById('t6')
-var t7 = document.getElementById('t7')
-var t8 = document.getElementById('t8')
-var t9 = document.getElementById('t9')
-var l1 = document.getElementById('l1')
-var l2 = document.getElementById('l2')
-var l3 = document.getElementById('l3')
-var l4 = document.getElementById('l4')
-var l5 = document.getElementById('l5')
-var l6 = document.getElementById('l6')
-var l7 = document.getElementById('l7')
+var hintBtn = document.getElementById('hint');  
+var retryBtn = document.getElementById('retry');
+hintBtn.addEventListener("click", hint);
+retryBtn.addEventListener("click", retryLevel);
+
+var t1 = document.getElementById('t1');
+var t2 = document.getElementById('t2');
+var t3 = document.getElementById('t3');
+var t4 = document.getElementById('t4');
+var t5 = document.getElementById('t5');
+var t6 = document.getElementById('t6');
+var t7 = document.getElementById('t7');
+var t8 = document.getElementById('t8');
+var t9 = document.getElementById('t9');
+var l1 = document.getElementById('l1');
+var l2 = document.getElementById('l2');
+var l3 = document.getElementById('l3');
+var l4 = document.getElementById('l4');
+var l5 = document.getElementById('l5');
+var l6 = document.getElementById('l6');
+var l7 = document.getElementById('l7');
 
 /*----- functions -----*/ 
 function initGame(){
-    level = 0;
     lives = 5;
     joinedWordsSeperate = [];
     lettersPlayed = [];
@@ -37,7 +38,10 @@ function initGame(){
     gameOver = false;
     lifeLoss = false;
     levelDisplay.textContent = "Level: " + (level + 1);
-
+    for(let cube of wordTable){
+        cube.style.borderColor = "black";
+    }
+    blankSpaces.textContent = "";
     addClickListener()
     answerDisplay();
     
@@ -59,7 +63,6 @@ function initGame(){
     l6.textContent = levelsArray[level].board[14];
     l7.textContent = levelsArray[level].board[15];
 
-    checkForWin();
 
 
 }
@@ -91,7 +94,7 @@ function checkForWin(){
             }
             }
         if(joinedWordsSeperate.length === levelsArray[level].levelAnswers.length){
-        alert("Level Complete!");
+        console.log("Level Complete!");
         nextLevel();
         }
     }
@@ -134,13 +137,10 @@ function addClickListener(){
 // initiates next level, changes board to next level
 function nextLevel(){
     lives = 5;
-    level = level++;
+    level+=1;
     lettersPlayed.length = 0;
     joinedWordsSeperate.length = 0;
-    for(let cube of wordTable){
-        cube.addEventListener('click',letterPush);
-        cube.style.borderColor = "black";
-    }
-    blankSpaces.textContent = "";
+
     answerDisplay();
+    initGame();
 }

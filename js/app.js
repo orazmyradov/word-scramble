@@ -1,5 +1,4 @@
 /*----- Initialize Game Function -----*/ 
-
 function initGame(){
     gameWon = false;
     gameOver = false;

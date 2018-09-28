@@ -8,6 +8,8 @@ var answerList = document.querySelectorAll('li');
 var levelDisplay = document.getElementById('level-display');
 var biggerBoard = document.querySelectorAll('.level-up-invisible');
 var rightHalf = document.getElementById('right-half');
+var directions = document.createElement('h2');
+
 var quitBtn = document.getElementById('quit');
 quitBtn.addEventListener('click', quit);
 
@@ -150,6 +152,8 @@ function quit(){
     lettersPlayed.length = 0;
     levelDisplay.textContent = "Level: " + (level + 1);
     boardLetterAssigner();
+    lives = [];
+    lifeCreator();
 }
 
 // Found this example at https://www.w3resource.com/javascript-exercises/javascript-array-exercise-17.php
@@ -168,18 +172,3 @@ function shuffleArray(arrayBoard){
     return arrayBoard;
 }
 
-function startScreen(){
-    wordTable.forEach(function(item){
-        item.textContent="";
-    })
-    rightHalf.textContent = "";
-    var directions = document.createElement('h2');
-    directions.textContent = "Multiple words will be scrambled in the grid on the left. Solve the puzzle by clicking each word's letters in the correct order.";
-    rightHalf.appendChild(directions);
-
-    startBtn = document.createElement('button');
-    startBtn.textContent = 'CLICK TO BEGIN';
-    rightHalf.appendChild(startBtn);
-    startBtn.addEventListener('click',initGame);
-
-}

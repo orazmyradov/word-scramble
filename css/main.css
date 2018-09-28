@@ -22,24 +22,32 @@ tr, td {
     padding: 8%;
     background-color: #FFFEDF;
     font-size: 1.5em;
+    font-family: 'Cabin Sketch', cursive;
 }
 header{
     height: 15vh;
     border-bottom: black 5px solid;
     background-color: rgba(49, 88, 192, 0.3);
 }
-footer{
-    grid-area: footer;
-    height: 2em;
+p{
+    font-size: 20px;
+    text-align: right;
+    margin: 0 auto;
+    padding: auto;
+    display: inline-block;
+    clear: both;
+    width: 85%;
 }
 h1{
     text-align: center;
     font-size: 4em;
+    font-family: 'Cabin Sketch', cursive;
 }
 li{
     padding: 5px;
     margin: 0 auto;
     letter-spacing: 1em;
+    font-family: 'Cabin Sketch', cursive;
 }
 button{
     padding: 0 auto;
@@ -65,6 +73,7 @@ h2{
     text-decoration: underline;
     grid-area: level;
     font-size: 45px;
+    font-family: 'Cabin Sketch', cursive;
 }
 .lives{
     grid-area: eggs;

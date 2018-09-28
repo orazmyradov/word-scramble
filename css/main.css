@@ -10,16 +10,16 @@ main{
 
 }
 table{
-    width: 78%;
+    width: 85%;
     height: 75%;
-    margin: 5% auto;
+    margin: 5% auto auto;
 }
 tr, td {
     border: 3px solid black;
     border-radius: 10px;
     text-align: center;
-    height: 20px;
-    padding: 10%;
+    height: 18px;
+    padding: 8%;
     background-color: #FFFEDF;
     font-size: 1.5em;
 }
@@ -37,9 +37,9 @@ h1{
     font-size: 4em;
 }
 li{
-    border: 1px black solid;
     padding: 5px;
     margin: 0 auto;
+    letter-spacing: 1em;
 }
 button{
     padding: 0 auto;
@@ -85,8 +85,11 @@ h2{
     grid-area: eggs;
 
 }
-.level-up-visible{
+.level-up-invisible{
     visibility: hidden;
+}
+.level-up-bigger{
+    visibility: visible;
 }
 .buttons{
     grid-area: buttons;

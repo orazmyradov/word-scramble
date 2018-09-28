@@ -1,4 +1,4 @@
-/*----- functions -----*/ 
+/*----- Initialize Game Function -----*/ 
 
 function initGame(){
     gameWon = false;
@@ -6,15 +6,13 @@ function initGame(){
     lifeLoss = false;
     addClickListener()
     answerDisplay();
-    joinedWordsSeperate.length = 0;
+    completedWords.length = 0;
     lettersPlayed.length = 0;
     levelDisplay.textContent = "Level: " + (level + 1);
     lifeCreator();
     boardLetterAssigner();
     gameOverScreen();
-    if(level>=7){
-        levelUp();
-    }
+
 }
 initGame();
 
@@ -26,12 +24,12 @@ initGame();
 function nextLevel(){
     level+=1;
     lettersPlayed.length = 0;
-    joinedWordsSeperate.length = 0;
+    completedWords.length = 0;
     addClickListener()
     answerDisplay();
 
     lives.length = 5;
-    joinedWordsSeperate = [];
+    completedWords = [];
     lettersPlayed = [];
     gameWon = false;
     gameOver = false;
@@ -42,6 +40,7 @@ function nextLevel(){
     for(let cube of wordTable){
         cube.style.borderColor = "black";
     }
+    levelUp();
     boardLetterAssigner();
 }
 
@@ -60,14 +59,14 @@ function checkForWin() {
         lives.shift();
         livesImages.removeChild(livesImages.lastChild);
         lettersPlayed.length = 0;
-        joinedWordsSeperate.length = 0;
+        completedWords.length = 0;
         addClickListener();
         answerDisplay();
         console.log("bad letter");
     };
 
     if(levelsArray[level].levelAnswers.includes(lettersPlayed.join(''))){
-        joinedWordsSeperate.push(this.lettersPlayed.join(''));
+        completedWords.push(this.lettersPlayed.join(''));
         for(let w = 0; w < blankSpaces.childElementCount; w++){
             if(this.lettersPlayed.join('').length === blankSpaces.childNodes[w].textContent.length){
                 blankSpaces.childNodes[w].textContent = this.lettersPlayed.join('');
@@ -76,9 +75,9 @@ function checkForWin() {
         lettersPlayed.length = 0;
     };
 
-    console.log(joinedWordsSeperate);
+    console.log(completedWords);
     
-    if(joinedWordsSeperate.length === levelsArray[level].levelAnswers.length){
+    if(completedWords.length === levelsArray[level].levelAnswers.length){
     titleDisplay.textContent = "Level Complete!";
     setTimeout(nextLevel, 1500);
     }
@@ -129,10 +128,38 @@ function lifeCreator (){
 function lifeCount(){
     titleDisplay.textContent = ("Life Lost. " + lives.length + " left.");
     lettersPlayed.length = 0;
-    joinedWordsSeperate.length=0;
+    completedWords.length=0;
 }
 
+// readjusts the board after retry level is clicked
 
+function retryLevel(){
+    completedWords.length = 0;
+    lettersPlayed.length = 0;
+    gameWon = false;
+    gameOver = false;
+    levelDisplay.textContent = "Level: " + (level + 1);
+    for(let cube of wordTable){
+        cube.style.borderColor = "black";
+    }
+    addClickListener()
+    answerDisplay();
+    boardLetterAssigner();
+}
+
+//function for hint button
+function hint(){
+    alert(levelsArray[level].hint);
+}
+
+//increases board size
+function levelUp(){
+    if(level >= 7 ){
+        for(let i = 0; i < biggerBoard.length; i++){
+            biggerBoard[i].className = "level-up-bigger";
+        }
+    }    
+}
 
 // applies appropriate letters to grid based on level
 function boardLetterAssigner(){
@@ -154,6 +181,8 @@ function boardLetterAssigner(){
     l6.textContent = levelsArray[level].board[14];
     l7.textContent = levelsArray[level].board[15];
 }
+
+
 
 //after all lives are lost, initiate this function
 

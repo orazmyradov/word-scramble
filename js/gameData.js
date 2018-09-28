@@ -9,7 +9,7 @@ var blankSpaces = document.getElementById('blank-spaces');
 var answerList = document.querySelectorAll('li');
 var levelDisplay = document.getElementById('level-display');
 
-var biggerBoard = document.getElementsByClassName('level-up-visible');
+var biggerBoard = document.querySelectorAll('.level-up-invisible');
 
 var hintBtn = document.getElementById('hint');  
 hintBtn.addEventListener("click", hint);
@@ -48,18 +48,14 @@ var lifeLoss;
 var lives = [];
 
 var lettersPlayed = [];
-var joinedWordsSeperate = [];
+var completedWords = [];
 
 /*----- Levels -----*/
 
 var levelsArray = [
-         {board: ["C","G","E","H","E","G","E","S","E"],
+         {board: ["C","G","E","H","E","G","E","S","E","2"],
          hint: "breakfast",
          levelAnswers: ["EGG", "CHEESE"]
-        } ,
-        {board: ["F","O","S","N","P","R","O","O","K"],
-        hint: "utensils",
-        levelAnswers: ["SPOON","FORK"]
         } ,
         {board: ["E","R","P","L","E","P","A","A","P"],
          hint: "fruits",
@@ -73,6 +69,10 @@ var levelsArray = [
          hint: "hot drinks",
          levelAnswers: ["COFFEE", "TEA"]
         } ,
+        {board: ["F","O","S","N","P","R","O","O","K"],
+        hint: "utensils",
+        levelAnswers: ["SPOON","FORK"]
+        } ,
         {board: ["H","S","I","F","S","N","A","K","E"],
          hint: "pets",
          levelAnswers: ["SNAKE", "FISH"]
@@ -84,6 +84,10 @@ var levelsArray = [
         {board: ["C","H","I","C","K","E","N","H","O","R","S","E","G","O","A","T"],
          hint: "farm animals",
          levelAnswers: ["CHICKEN", "HORSE", "GOAT"],
+        } ,
+        {board: ["S","H","E","E","P","G","O","A","T","R","O","O","S","T","E","R"],
+         hint: "farm animals",
+         levelAnswers: ["SHEEP","GOAT","ROOSTER"],
         }
 ]
 
@@ -96,42 +100,17 @@ var wordBank = [
     ["SNAKE","FISH"], //6
     ["DOG","FERRET"], //7
     ["CHICKEN","HORSE","GOAT"], //8
-    ["SHEEP","GOAT","PIG","HEN"], //9
+    ["SHEEP","GOAT","ROOSTER"], //9
     ["TIGER","LION","PANTHER"], //10
     ["EAGLE","HAWK","VULTURE"], //11
     ["SHARK","DOLPHIN","SEAL"], //12
     ["JAVASCRIPT","IS","NEAT"] //13
 ]
 
-/*----- functions -----*/
-//function for hint button
-function hint(){
-    alert(levelsArray[level].hint);
-}
-
-//increases board size
-function levelUp(){
-    biggerBoard.forEach(function(element){
-        element.style.visibility = "visible";
-    })
-}
 
 
-// readjusts the board after retry level is clicked
 
-function retryLevel(){
-    joinedWordsSeperate.length = 0;
-    lettersPlayed.length = 0;
-    gameWon = false;
-    gameOver = false;
-    levelDisplay.textContent = "Level: " + (level + 1);
-    for(let cube of wordTable){
-        cube.style.borderColor = "black";
-    }
-    addClickListener()
-    answerDisplay();
-    boardLetterAssigner();
-}
+
 
 
 

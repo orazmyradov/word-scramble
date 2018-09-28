@@ -2,14 +2,14 @@
 var wordTable = document.querySelectorAll('td');
 var eggs = document.querySelectorAll('img');
 var livesImages = document.getElementById('lives');
-
 var titleDisplay = document.getElementById('title-display');
-
 var blankSpaces = document.getElementById('blank-spaces');
 var answerList = document.querySelectorAll('li');
 var levelDisplay = document.getElementById('level-display');
-
 var biggerBoard = document.querySelectorAll('.level-up-invisible');
+var rightHalf = document.getElementById('right-half');
+var quitBtn = document.getElementById('quit');
+quitBtn.addEventListener('click', quit);
 
 var hintBtn = document.getElementById('hint');  
 hintBtn.addEventListener("click", hint);
@@ -53,64 +53,133 @@ var completedWords = [];
 /*----- Levels -----*/
 
 var levelsArray = [
-         {board: ["C","G","E","H","E","G","E","S","E","2"],
+         {board: shuffleArray(["C","G","E","H","E","G","E","S","E"]),
          hint: "breakfast",
-         levelAnswers: ["EGG", "CHEESE"]
+         levelAnswers: ["EGG", "CHEESE"],
+         image: "./images/egg.png"
         } ,
-        {board: ["E","R","P","L","E","P","A","A","P"],
+        {board: shuffleArray(["E","R","P","L","E","P","A","A","P"]),
          hint: "fruits",
-         levelAnswers: ["APPLE", "PEAR"]
+         levelAnswers: ["APPLE", "PEAR"],
+         image: "./images/egg.png"
         } ,
-        {board: ["B","T","T","U","A","E","M","R","J"],
+        {board: shuffleArray(["B","T","T","U","A","E","M","R","J"]),
          hint: "spread",
-         levelAnswers: ["BUTTER", "JAM"]
+         levelAnswers: ["BUTTER", "JAM"],
+         image: "./images/egg.png"
         } ,
-        {board: ["A","T","E","E","E","F","O","F","C"],
+        {board: shuffleArray(["A","T","E","E","E","F","O","F","C"]),
          hint: "hot drinks",
-         levelAnswers: ["COFFEE", "TEA"]
+         levelAnswers: ["COFFEE", "TEA"],
+         image: "./images/uncracked_egg.png"
         } ,
-        {board: ["F","O","S","N","P","R","O","O","K"],
+        {board: shuffleArray(["F","O","S","N","P","R","O","O","K"]),
         hint: "utensils",
-        levelAnswers: ["SPOON","FORK"]
+        levelAnswers: ["SPOON","FORK"],
+        image: "./images/uncracked_egg.png"
         } ,
-        {board: ["H","S","I","F","S","N","A","K","E"],
+        {board: shuffleArray(["H","S","I","F","S","N","A","K","E"]),
          hint: "pets",
-         levelAnswers: ["SNAKE", "FISH"]
+         levelAnswers: ["SNAKE", "FISH"],
+         image: "./images/hen.png"
         } ,
-        {board: ["D","O","G","F","E","R","R","E","T"],
+        {board: shuffleArray(["D","O","G","F","E","R","R","E","T"]),
          hint: "pets",
-         levelAnswers: ["DOG", "FERRET"]
+         levelAnswers: ["DOG", "FERRET"],
+         image: "./images/hen.png"
         } ,
-        {board: ["C","H","I","C","K","E","N","H","O","R","S","E","G","O","A","T"],
+        {board: shuffleArray(["C","H","I","C","K","E","N","H","O","R","S","E","G","O","A","T"]),
          hint: "farm animals",
          levelAnswers: ["CHICKEN", "HORSE", "GOAT"],
+         image: "./images/hen.png"
         } ,
-        {board: ["S","H","E","E","P","G","O","A","T","R","O","O","S","T","E","R"],
-         hint: "farm animals",
-         levelAnswers: ["SHEEP","GOAT","ROOSTER"],
+        {board: shuffleArray(["T","I","G","E","R","L","I","O","N","P","A","N","T","H","E","R"]),
+         hint: "MEOW!",
+         levelAnswers: ["TIGER","LION","PANTHER"],
+         image: "./images/hen.png"
+        } ,
+        {board: shuffleArray(["E","A","G","L","E","H","A","W","K","V","U","L","T","U","R","E"]),
+         hint: "flyers",
+         levelAnswers: ["EAGLE","HAWK","VULTURE"],
+         image: "./images/hen.png"
+        } ,
+        {board: shuffleArray(["S","H","A","R","K","D","O","L","P","H","I","N","S","E","A","L"]),
+         hint: "swimmers",
+         levelAnswers: ["SHARK","DOLPHIN","SEAL"],
+         image: "./images/hen.png"
+        } ,
+        {board: shuffleArray(["J","A","V","A","S","C","R","I","P","T","I","S","N","E","A","T"]),
+         hint: "How I made this game",
+         levelAnswers: ["JAVASCRIPT","IS","NEAT"],
+         image: "./images/hen.png"
         }
 ]
 
-var wordBank = [
-    ["EGG", "CHEESE"], //1
-    ["SPOON","FORK"], //2
-    ["APPLE", "PEAR"], //3
-    ["BUTTER","JAM"], //4
-    ["COFFEE", "TEA"], //5
-    ["SNAKE","FISH"], //6
-    ["DOG","FERRET"], //7
-    ["CHICKEN","HORSE","GOAT"], //8
-    ["SHEEP","GOAT","ROOSTER"], //9
-    ["TIGER","LION","PANTHER"], //10
-    ["EAGLE","HAWK","VULTURE"], //11
-    ["SHARK","DOLPHIN","SEAL"], //12
-    ["JAVASCRIPT","IS","NEAT"] //13
-]
 
+/*--- Additional Functions ---*/
 
+// readjusts the board after retry button is clicked
+function retryLevel(){
+    completedWords.length = 0;
+    lettersPlayed.length = 0;
+    gameWon = false;
+    gameOver = false;
+    levelDisplay.textContent = "Level: " + (level + 1);
+    for(let cube of wordTable){
+        cube.style.borderColor = "black";
+    }
+    addClickListener()
+    answerDisplay();
+    boardLetterAssigner();
+}
 
+//hint button
+function hint(){
+    alert(levelsArray[level].hint);
+}
 
+//quit button
+function quit(){
+    level = 0;
+    gameWon = false;
+    gameOver = false;
+    lifeLoss = false;
+    addClickListener()
+    answerDisplay();
+    completedWords.length = 0;
+    lettersPlayed.length = 0;
+    levelDisplay.textContent = "Level: " + (level + 1);
+    boardLetterAssigner();
+}
 
+// Found this example at https://www.w3resource.com/javascript-exercises/javascript-array-exercise-17.php
+// Added last minute add a challenge to the board by shuffling it each time played.
+function shuffleArray(arrayBoard){
+    let list = arrayBoard.length;
+    let index;
+    let element;
+    while(list>0){
+        index = Math.floor(Math.random() * list);
+        list--;
+        element = arrayBoard[list];
+        arrayBoard[list] = arrayBoard[index];
+        arrayBoard[index] = element;
+    }
+    return arrayBoard;
+}
 
+function startScreen(){
+    wordTable.forEach(function(item){
+        item.textContent="";
+    })
+    rightHalf.textContent = "";
+    var directions = document.createElement('h2');
+    directions.textContent = "Multiple words will be scrambled in the grid on the left. Solve the puzzle by clicking each word's letters in the correct order.";
+    rightHalf.appendChild(directions);
 
+    startBtn = document.createElement('button');
+    startBtn.textContent = 'CLICK TO BEGIN';
+    rightHalf.appendChild(startBtn);
+    startBtn.addEventListener('click',initGame);
 
+}

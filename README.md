@@ -1,5 +1,4 @@
 # Word-Scramble
-Game created for Unit 1 my General Assembly Web Immersive course
 
 ##User stories
 1. User sees Level 1 board.

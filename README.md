@@ -1,6 +1,6 @@
 # Word-Scramble
 
-##User stories
+##User Guide
 1. User sees Level 1 board.
 2. Rules are displayed.
 3. Board is a grid with letters displayed within the board
